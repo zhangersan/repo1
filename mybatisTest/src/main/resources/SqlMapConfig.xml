@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+    <!--外部加载的properties文件-->
+    <properties resource="jdbc.properties"></properties>
+
+    <!--全限定类名:别名-->
+    <typeAliases>
+        <!--单个类名定义别名-->
+        <typeAlias type="com.lagou.domain.User" alias="user"></typeAlias>
+        <!--多个类名定义别名-->
+        <!--<package name="com.lagou.domain"/>-->
+    </typeAliases>
+    <!--环境配置-->
+    <environments default="mysql">
+        <!--使用Mysql环境-->
+        <environment id="mysql">
+            <!--使用JDBC类型事务管理器-->
+            <transactionManager type="JDBC"></transactionManager>
+            <!--使用连接池-->
+            <dataSource type="POOLED">
+                <property name="driver" value="${jdbc.driver}"/>
+                <property name="url" value="${jdbc.url}"/>
+                <property name="username" value="${jdbc.username}"/>
+                <property name="password" value="${jdbc.password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+
+    <!--加载映射配置-->
+    <mappers>
+        <mapper resource="mapper\UserMapper.xml"></mapper>
+    </mappers>
+
+</configuration>
